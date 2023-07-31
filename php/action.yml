@@ -42,7 +42,7 @@ runs:
   steps:
     - uses: shivammathur/setup-php@v2
 
-    - run: composer update --no-scripts
+    - run: composer update
       shell: bash
 
     - if: inputs.post-update
