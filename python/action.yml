@@ -63,6 +63,9 @@ runs:
             sed -E 's/Updating (.*) \((.*)\)/\1 \2/g' | \
             sort >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
+          echo 'outdated<<EOF' >> $GITHUB_OUTPUT
+          poetry show --outdated >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
         fi
       shell: bash
 
@@ -78,6 +81,14 @@ runs:
           ```
           ${{ steps.update.outputs.diff }}
           ```
+
+          <details>
+            <summary>Outdated packages</summary>
+
+          ```
+          ${{ steps.update.outputs.outdated }}
+          ```
+          </details>
         author: GitHub <noreply@github.com>
         branch: ${{ inputs.branch }}
         committer: GitHub <noreply@github.com>
